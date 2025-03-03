@@ -1,18 +1,19 @@
 import React from 'react';
-import './App.css';
-import Game from './components/Game';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import CatOrDog from './CatOrDog.js'
+import StartingPot from './StartingPot.js'
+import Game from './components/Game.js';
 
-const App = () => {
+function App() {
   return (
-    <div className='game-container'>
-      <h1>Cat Dodge Game</h1>
-      <p>A game to highlight the importance of pet insurance — protect your furry friends!</p>
-
-        <Game />
-
-      
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<CatOrDog />} />
+        <Route path="/starting-pot" element={<StartingPot />} />
+        <Route path="/game" element={<Game />} />
+      </Routes>
+    </Router>
   );
-};
+}
 
-export default App
+export default App;

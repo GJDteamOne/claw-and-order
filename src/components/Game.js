@@ -73,7 +73,7 @@ const Game = () => {
   };
 
   return (
-    <div>
+    <div className='game-container'>
       <GameBoard
         catPosition={catPosition}
         obstacles={obstacles}

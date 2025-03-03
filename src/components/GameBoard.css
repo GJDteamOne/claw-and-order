@@ -1,0 +1,38 @@
+.road {
+    display: flex;
+    width: 100%;
+    max-width: 393px;
+    height: 852px;
+    border: 2px solid black;
+    background-color: #ddd;
+    overflow: hidden;
+  }
+  
+  .lane {
+    flex: 1;
+    border-left: 20px dashed #aaa;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+  }
+  
+  .lane:first-child {
+    border-left: none;
+  }
+  
+  .cat-icon {
+    font-size: 50px;
+    margin-bottom: 10px;
+  }
+  
+  
+
+  .cat-icon {
+    font-size: 50px;
+    color: orange;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }

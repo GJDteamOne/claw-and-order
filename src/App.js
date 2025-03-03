@@ -11,7 +11,7 @@ function App() {
         <Routes>
           <Route path="/" element={<WidowsAppHome />} />
           <Route path="/starting-pot" element={<StartingPot />} />
-          <Route path="/game" element={<Game />} />
+          <Route path="/game" element={<Game initialLives={5} iconType="cat" />} />
         </Routes>
       </Router>
     </div>

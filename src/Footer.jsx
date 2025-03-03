@@ -1,5 +1,5 @@
 import React from 'react';
-import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
 import HomeIconOutlined from '@mui/icons-material/HomeOutlined';
@@ -19,11 +19,14 @@ const FooterContainer = styled('footer')({
     borderBottomRightRadius: '32px',
 });
 
-const MenuItem = styled(Typography)({
+const MenuItem = styled(Box)({
     textAlign: 'center',
     cursor: 'pointer',
     fontSize: '14px',
     fontWeight: 500,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
 });
 
 function Footer() {
@@ -46,20 +49,20 @@ function Footer() {
 
     return (
         <FooterContainer>
-            <Grid container>
+            <Box display="flex" justifyContent="space-around">
                 {menuItems.map((item) => (
-                    <Grid item xs={3} key={item}>
+                    <Box key={item} textAlign="center">
                         <MenuItem>
-                            <Grid >
+                            <Box>
                                 {getIcon(item)}
-                            </Grid>
-                            <Grid >
+                            </Box>
+                            <Typography component="span">
                                 {item}
-                            </Grid>
+                            </Typography>
                         </MenuItem>
-                    </Grid>
+                    </Box>
                 ))}
-            </Grid>
+            </Box>
         </FooterContainer>
     );
 }

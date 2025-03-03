@@ -22,18 +22,18 @@ function Header() {
     return (
         <HeaderContainer>
             <Grid container>
-                <Grid item xs={4}>
+                <Grid item xs={4} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <MenuItem>
                         <PersonIconOutlined />
                     </MenuItem>
                 </Grid>
-                <Grid item xs={4}>
-                    <MenuItem style={{ backgroundColor: '#002' }}>
+                <Grid item xs={4} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <MenuItem style={{ backgroundColor: '#ede9ff', display: 'flex', alignItems: 'center', padding: '10px', borderTopLeftRadius: '24px', borderTopRightRadius: '24px', borderBottomLeftRadius: '24px', borderBottomRightRadius: '24px', }}>
                         <PlayCircleIcon />
-                        For you
+                        <Typography style={{ marginLeft: '8px' }}>for you</Typography>
                     </MenuItem>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={4} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <MenuItem>
                         <EmailIconOutlined />
                     </MenuItem>

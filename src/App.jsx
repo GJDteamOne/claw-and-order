@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import WidowsAppHome from './WidowsAppHome.js';
-import StartingPot from './StartingPot.js';
-import Game from './components/Game.js';
+
+import Game from './components/Game';
+import StartingPot from './StartingPot';
+import WidowsAppHome from './WidowsAppHome';
 
 function App() {
   return (

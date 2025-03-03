@@ -1,7 +1,12 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 function StartingPot() {
-    return <h1>Starting Pot</h1>;
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
+    const animal = params.get('animal');
+
+    return <h1>{animal} Starting Pot</h1>;
 }
 
 export default StartingPot;

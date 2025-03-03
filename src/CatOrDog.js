@@ -10,8 +10,8 @@ function CatOrDog() {
 
   return (
     <div>
-      <img src="/cat.png" alt="Cat" loading="lazy" onClick={() => handleClick('Cat')} style={{width: 200, height: 200, borderRadius: '50%', cursor: 'pointer'}} />
-      <img src="/dog.png" alt="Dog" loading="lazy" onClick={() => handleClick('Dog')} style={{width: 200, height: 200, borderRadius: '50%', cursor: 'pointer'}} />
+      <img src="/cat.png" alt="Cat" loading="lazy" onClick={() => handleClick('cat')} style={{width: 200, height: 200, borderRadius: '50%', cursor: 'pointer'}} />
+      <img src="/dog.png" alt="Dog" loading="lazy" onClick={() => handleClick('dog')} style={{width: 200, height: 200, borderRadius: '50%', cursor: 'pointer'}} />
     </div>
   );
 }

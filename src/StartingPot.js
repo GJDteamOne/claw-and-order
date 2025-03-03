@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
-import { useLocation } from 'react-router-dom';
 import { GameContext } from './App';
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -36,7 +36,7 @@ function StartingPot() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, px: { xs: 2, sm: 4, md: 6 } }}>
       <Grid container spacing={{ xs: 2, sm: 3 }}>
         <Grid item xs={12}>
           <Item>
@@ -46,7 +46,7 @@ function StartingPot() {
         <Grid item xs={12}>
           <Item>
             <h1>Starting Pot</h1>
-            <img src="paw_coin.svg" alt="Paw coin" />
+            <img src="Pawcoin64.png" alt="Paw coin" />
             <h2>8000 Points</h2>
           </Item>
         </Grid>
@@ -55,36 +55,47 @@ function StartingPot() {
             <h2>You can select one of the following covers</h2>
           </Item>
         </Grid>
+        <Grid item xs={12} sm={4}>
+          <BronzeGrid onClick={() => handleClick(1000)}>
+            <Item>
+              <h3>Bronze</h3>
+            </Item>
+            <Item>
+              <img src='bronzeshield64px.png' alt='Bronze shield'/>
+            </Item>
+            <Item>
+              <h3>1000</h3>
+            </Item>
+          </BronzeGrid>
+        </Grid>
 
-        <BronzeGrid item xs={12} sm={4} onClick={() => handleClick(1000)}>
-          <Item>
-            <h3>Bronze</h3>
-          </Item>
-          <Item>Shield comes here</Item>
-          <Item>
-            <h3>1000</h3>
-          </Item>
-        </BronzeGrid>
+        <Grid item xs={12} sm={4}>
+          <SilverGrid onClick={() => handleClick(2000)}>
+            <Item>
+              <h3>Silver</h3>
+            </Item>
+            <Item>
+              <img src='silvershield64px.png' alt='Silver shield'/>
+            </Item>
+            <Item>
+              <h3>2000</h3>
+            </Item>
+          </SilverGrid>
+        </Grid>
 
-        <SilverGrid item xs={12} sm={4} onClick={() => handleClick(2000)}>
-          <Item>
-            <h3>Silver</h3>
-          </Item>
-          <Item>Shield comes here</Item>
-          <Item>
-            <h3>2000</h3>
-          </Item>
-        </SilverGrid>
-
-        <GoldGrid item xs={12} sm={4} onClick={() => handleClick(3000)}>
-          <Item>
-            <h3>Gold</h3>
-          </Item>
-          <Item>Shield comes here</Item>
-          <Item>
-            <h3>3000</h3>
-          </Item>
-        </GoldGrid>
+        <Grid item xs={12} sm={4}>
+          <GoldGrid onClick={() => handleClick(3000)}>
+            <Item>
+              <h3>Gold</h3>
+            </Item>
+            <Item>
+              <img src='goldshield64px.png' alt='Gold shield'/>
+            </Item>
+            <Item>
+              <h3>3000</h3>
+            </Item>
+          </GoldGrid>
+        </Grid>
 
         <Grid item xs={12}>
           <Item>

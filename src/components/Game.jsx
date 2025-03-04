@@ -9,6 +9,7 @@ import SilverShield from '../../public/silverShield64px.png'
 import GoldShield from '../../public/goldShield64px.png'
 import './Game.css';
 import { GameContext } from '../App';
+import { FinalPage } from '../Pages/FinalPage';
 
 const facts = ['Did you know....the average claim for a dog is £826 and for a cat is £702?', 'Did you know... we offer free 24/7 vet advice through video call through each of our insurance plans?', 'Did you know... the average vet bill for a range of common incidents have risen anywhere from 70% to 105% over the past 4 years alone?', "Did you know... we pay claims directly to your vet; you won't need to pay yourself and wait for reimbursement."];
 
@@ -170,6 +171,7 @@ const Game = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [catPosition, gameOver, showWinPopup]);
 
+  if (!showPopup && !showWinPopup) {
   return (
     <div className="game-container">
       <span className="pawcoin-container">
@@ -191,6 +193,16 @@ const Game = () => {
       {showWinPopup && <WinPopup />}
     </div>
   );
+} else if (showPopup) {
+  return (
+
+    <FinalPage result={'lose'} />
+  )
+} else if (showWinPopup) {
+  return (
+    <FinalPage result={'win'} />
+  )
+}
 };
 
 export default Game;

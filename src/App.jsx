@@ -27,7 +27,7 @@ function App() {
           <Route path="/" element={<WidowsAppHome />} />
           <Route path="/starting-pot" element={<StartingPot />} />
           <Route path="/game" element={<Game />} />
-          <Route path="/final" element={<FinalPage />} />
+          <Route path="/final" element={<FinalPage result={'win'} />} />
         </Routes>
       </Router>
     </GameContext.Provider>

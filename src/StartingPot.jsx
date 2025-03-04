@@ -4,11 +4,9 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import { GameContext } from './App';
-import Card from './components/Card';
 
 function StartingPot() {
   const { gameState, updateGameState } = useContext(GameContext);
-  const [ selectedPetType, setSelectedPetType] = useState('');
   const [ selectedCoverType, setSelectedCoverType] = useState('');
 
   const handleClick = (selectedCover) => {
@@ -19,37 +17,8 @@ function StartingPot() {
     setSelectedCoverType(selectedCover);
   };
 
-  const handlePetTypeSelection = (petType) => {
-    updateGameState({
-      ...gameState,
-      iconType: petType,
-    });
-    setSelectedPetType(petType);
-  };
-
   return (
     <Box sx={{ flexGrow: 1, px: { xs: 2, sm: 4, md: 6 } }}>
-      <Stack spacing={3} alignItems='center' sx={{ marginBlock: '2rem' }}>
-        <h1>Select The Insurance Type</h1>
-      </Stack>
-      <Stack 
-        direction={{ xs: 'column', sm: 'row' }} 
-        spacing={3} 
-        justifyContent='center'
-        alignItems='center'
-        sx={{ marginBlock: '2rem' }}
-      >
-        <Card
-          petType='cat'
-          handlePetTypeSelection={handlePetTypeSelection}
-          isClicked={selectedPetType === 'cat' ? true : false}
-        />
-        <Card
-          petType='dog'
-          handlePetTypeSelection={handlePetTypeSelection}
-          isClicked={selectedPetType === 'dog' ? true : false}
-        />
-      </Stack>
       <Stack spacing={3} alignItems='center'>
         <Item>
           <h1>Starting Pot</h1>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { GiDogHouse, GiFishbone, GiBalloonDog, GiTennisBall, GiBananaPeeled } from 'react-icons/gi';
 import GameBoard from './GameBoard';
 import Popup from './Popup';
@@ -8,29 +8,31 @@ import BronzeShield from '../../public/bronzeshield64px.png'
 import SilverShield from '../../public/silverShield64px.png'
 import GoldShield from '../../public/goldShield64px.png'
 import './Game.css';
+import { GameContext } from '../App';
 
-const Game = ({ initialPoints = 5000, coverLevel = 'bronze', iconType = 'cat' }) => {
+const Game = () => {
+  const context = useContext(GameContext);
   const obstacleIcons = [GiDogHouse, GiFishbone, GiBalloonDog, GiTennisBall, GiBananaPeeled];
 
   const [catPosition, setCatPosition] = useState(1);
   const [obstacles, setObstacles] = useState([]);
-  const [score, setScore] = useState(initialPoints);
+  const [score, setScore] = useState(context.gameState.initialPoints);
   const [gameOver, setGameOver] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-  const [shields, setShields] = useState(() => coverLevel === 'bronze' ? 3000 : coverLevel === 'silver' ? 6000 : coverLevel === 'gold' ? 12000 : 0);
-  const [playerIcon, setPlayerIcon] = useState(iconType === 'dog' ? '🐶' : '🐱');
+  const [shields, setShields] = useState(() => context.gameState.coverLevel === 'bronze' ? 3000 : context.gameState.coverLevel === 'silver' ? 6000 : context.gameState.coverLevel === 'gold' ? 12000 : 0);
+  const [playerIcon, setPlayerIcon] = useState(context.iconType === 'dog' ? '🐶' : '🐱');
   const [invincible, setInvincible] = useState(false);
   const [coinInvincible, setCoinInvincible] = useState(false);
   const [speed, setSpeed] = useState(1000);
   const [showWinPopup, setShowWinPopup] = useState(false);
-  const [points, setPoints] = useState(initialPoints);
   const [infoCoins, setInfoCoins] = useState([]);
   const [isHurt, setIsHurt] = useState(false)
-  const shieldImage = coverLevel === 'bronze' ? BronzeShield : coverLevel === 'silver' ? SilverShield : coverLevel === 'gold' ? GoldShield : 0;
+  const shieldImage = context.gameState.coverLevel === 'bronze' ? BronzeShield : context.gameState.coverLevel === 'silver' ? SilverShield : context.gameState.coverLevel === 'gold' ? GoldShield : 0;
 
   useEffect(() => {
-    setPlayerIcon(iconType === 'dog' ? '🐶' : '🐱');
-  }, [iconType]);
+    console.log(context)
+    setPlayerIcon(context.iconType === 'dog' ? '🐶' : '🐱');
+  }, [context.iconType]);
   
 
 
@@ -159,7 +161,7 @@ const Game = ({ initialPoints = 5000, coverLevel = 'bronze', iconType = 'cat' })
         <img src={PawCoin} alt="PawCoin" className="pawcoin" />
         {score}
       </span>
-    {coverLevel !== 'none' && (
+    {context.gameState.coverLevel !== 'none' && (
       <span className="shields-container">
       <img src={shieldImage} alt="Shield" className="shield" />
       {shields}

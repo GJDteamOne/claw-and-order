@@ -5,6 +5,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
+import { Typography } from '@mui/material';
 import { GameContext, INITIAL_POINTS } from './App';
 
 function StartingPot() {
@@ -37,7 +38,6 @@ function StartingPot() {
   };
 
   return (
-
     <Box sx={{ flexGrow: 1, px: { xs: 2, sm: 4, md: 6 } }}>
       <Stack spacing={3} alignItems='center'>
         <Item>
@@ -83,6 +83,23 @@ function StartingPot() {
         <WarningText>
           <h3>Or risk going without any pet insurance</h3>
         </WarningText>
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          spacing={2}
+          justifyContent='center'
+          sx={{ mb: 4 }} 
+        >
+
+          <Typography
+            variant='body1'
+          >
+            In the game on the next page, you will encounter a series of info coins and banana peels,
+            and you move your pet in order to collect info coins and avoid the banana peels.
+            Each info coin gives you 1000 paw points, while a banana peel deducts 1000 paw points.
+            The game stops when the number of paw points is 15000, or when it drops to 0. The game becomes progressively faster.
+          </Typography>
+
+        </Stack>
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
           spacing={2}

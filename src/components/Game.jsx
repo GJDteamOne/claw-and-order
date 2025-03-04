@@ -9,8 +9,9 @@ import SilverShield from '../../public/silverShield64px.png'
 import GoldShield from '../../public/goldShield64px.png'
 import './Game.css';
 import { GameContext } from '../App';
+import { FinalPage } from '../Pages/FinalPage';
 
-const facts = ['Fact 1', 'Fact 2', 'Fact 3', 'Fact 4', 'Fact 5'];
+const facts = ['Did you know....the average claim for a dog is £826 and for a cat is £702?', 'Did you know... we offer free 24/7 vet advice through video call through each of our insurance plans?', 'Did you know... the average vet bill for a range of common incidents have risen anywhere from 70% to 105% over the past 4 years alone?', "Did you know... we pay claims directly to your vet; you won't need to pay yourself and wait for reimbursement."];
 
 const Game = () => {
   const context = useContext(GameContext);
@@ -121,9 +122,12 @@ const Game = () => {
         const now = Date.now();
         if (now - lastCoinTime >= 5000) {
           setShowFact(true);
-          setCurrentFact(facts[Math.floor(Math.random() * facts.length)]);
+          let newFact;
+          do {
+            newFact = facts[Math.floor(Math.random() * facts.length)];
+          } while (newFact === currentFact);
+          setCurrentFact(newFact);
           setLastCoinTime(now);
-          setTimeout(() => setShowFact(false), 6000);
         }
         if (newScore >= 15000) {
           setShowWinPopup(true);
@@ -167,6 +171,7 @@ const Game = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [catPosition, gameOver, showWinPopup]);
 
+  if (!showPopup && !showWinPopup) {
   return (
     <div className="game-container">
       <span className="pawcoin-container">
@@ -188,6 +193,16 @@ const Game = () => {
       {showWinPopup && <WinPopup />}
     </div>
   );
+} else if (showPopup) {
+  return (
+
+    <FinalPage result={'lose'} />
+  )
+} else if (showWinPopup) {
+  return (
+    <FinalPage result={'win'} />
+  )
+}
 };
 
 export default Game;

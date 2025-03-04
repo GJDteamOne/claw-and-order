@@ -21,6 +21,7 @@ function StartingPot() {
   };
 
   return (
+
     <Box sx={{ flexGrow: 1, px: { xs: 2, sm: 4, md: 6 } }}>
       <Stack spacing={3} alignItems='center'>
         <Item>

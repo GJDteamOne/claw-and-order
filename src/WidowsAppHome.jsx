@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 function WidowsAppHome() {
     return (
         <>
-            <Header />
+            <Header isInitialPage={true} />
             <Box display="flex" justifyContent="center">
                 <Box width="100%" maxWidth="1200px" padding="10%">
                     <Box

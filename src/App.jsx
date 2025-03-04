@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Game from './components/Game';
 import StartingPot from './StartingPot';
 import WidowsAppHome from './WidowsAppHome';
+import { FinalPage } from './Pages/FinalPage';
 
 export const GameContext = createContext({});
 
@@ -20,12 +21,13 @@ function App() {
   };
 
   return (
-    <GameContext.Provider value={{gameState, updateGameState}}>
+    <GameContext.Provider value={{ gameState, updateGameState }}>
       <Router>
         <Routes>
           <Route path="/" element={<WidowsAppHome />} />
           <Route path="/starting-pot" element={<StartingPot />} />
           <Route path="/game" element={<Game />} />
+          <Route path="/final" element={<FinalPage />} />
         </Routes>
       </Router>
     </GameContext.Provider>

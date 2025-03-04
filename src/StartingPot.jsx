@@ -42,10 +42,10 @@ function StartingPot() {
         <Item>
           <h1>Starting Pot</h1>
           <img src='Pawcoin64.png' alt='Paw coin' />
-          <h2>8000 Points</h2>
+          <h2>{INITIAL_POINTS} Points</h2>
         </Item>
         <Item>
-          <h2>You can select one of the following covers</h2>
+          <h2>You can pay for one of the following covers</h2>
         </Item>
         <Stack
           direction={{ xs: 'column', sm: 'row' }}

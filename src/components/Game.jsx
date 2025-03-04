@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import GameBoard from './GameBoard';
 import Popup from './Popup';
+import WinPopup from './WinPopup';
 import './Game.css';
 
 const Game = ({ initialLives = 3, iconType = 'cat' }) => {
@@ -15,51 +16,85 @@ const Game = ({ initialLives = 3, iconType = 'cat' }) => {
   const [playerIcon, setPlayerIcon] = useState(iconType === 'dog' ? '🐶' : '🐱');
   const [invincible, setInvincible] = useState(false);
   const [speed, setSpeed] = useState(1000);
+  const [lastHitTime, setLastHitTime] = useState(0);
+  const [endless, isEndless] = useState(false);
+  const [winPopup, setWinPopup] = useState(false);
 
   useEffect(() => {
     setPlayerIcon(iconType === 'dog' ? '🐶' : '🐱');
   }, [iconType]);
 
+  const generateObstacleLane = (existingObstacles) => {
+    const lanes = [0, 1, 2];
+    const obstacleRows = new Array(5).fill(0).map(() => new Set());
+    existingObstacles.forEach((ob) => obstacleRows[ob.y]?.add(ob.lane));
+
+    const isPathPossible = obstacleRows.every((row) => row.size < 3);
+    if (!isPathPossible) return null;
+
+    const occupiedLanes = existingObstacles.filter((ob) => ob.y === 0).map((ob) => ob.lane);
+    const availableLanes = lanes.filter((lane) => !occupiedLanes.includes(lane));
+
+    if (availableLanes.length === 0) return Math.floor(Math.random() * 3);
+
+    const iconIndex = Math.floor(Math.random() * 5);
+    return { lane: availableLanes[Math.floor(Math.random() * availableLanes.length)], iconIndex };
+  };
+
   useEffect(() => {
-    if (gameOver) return;
+    if (!gameOver && endless && score >= 50) {
+        setWinPopup(true);
+    }
+  }, [score])
+
+  useEffect(() => {
+    if (gameOver || winPopup) return;
     const interval = setInterval(() => {
-      setObstacles((obs) => [
-        ...obs.filter((ob) => ob.y < 5),
-        { lane: Math.floor(Math.random() * 3), y: 0, iconIndex: Math.floor(Math.random() * obstacleIcons.length) },
-      ]);
+      setObstacles((obs) => {
+        const newObstacle = generateObstacleLane(obs);
+        if (!newObstacle) return obs; 
+        return [
+          ...obs.filter((ob) => ob.y < 6),
+          { ...newObstacle, y: 0 },
+        ];
+      });
       setScore((prev) => prev + 1);
       setSpeed((prevSpeed) => Math.max(400, prevSpeed - 20));
     }, speed);
-  
+
     return () => clearInterval(interval);
   }, [gameOver, speed]);
 
 
   useEffect(() => {
-    if (gameOver) return;
+    if (gameOver || winPopup) return;
     const interval = setInterval(() => {
       setObstacles((obs) =>
         obs.map((ob) => ({ ...ob, y: ob.y + 1 })).filter((ob) => ob.y < 6)
       );
-    }, Math.max(200, speed / 2));
+    }, Math.max(200, speed / 1.5));
 
     return () => clearInterval(interval);
   }, [obstacles, gameOver, speed]);
 
   useEffect(() => {
-    if (!invincible && obstacles.some((ob) => ob.y === 5 && ob.lane === catPosition)) {
-      setLives((prevLives) => Math.max(0, prevLives - 1));
-      setInvincible(true);
-      setTimeout(() => setInvincible(false), 1000);
-      if (lives - 1 <= 0) {
-        setGameOver(true);
-        setShowPopup(true);
+    const now = Date.now();
+    if (!invincible && obstacles.some((ob) => ob.y === 5 && ob.lane === catPosition && ob.y < 6)) {
+      if (now - lastHitTime > 150) {
+        setLives((prevLives) => Math.max(0, prevLives - 1));
+        setInvincible(true);
+        setLastHitTime(now);
+        setTimeout(() => setInvincible(false), 2000);
+        if (lives - 1 <= 0) {
+          setGameOver(true);
+          setShowPopup(true);
+        }
       }
     }
-  }, [obstacles, catPosition, lives, invincible]);
+  }, [obstacles, catPosition, lives, invincible, lastHitTime]);
 
   const handleKeyDown = (e) => {
-    if (gameOver) return;
+    if (gameOver || winPopup) return;
     if (e.key === 'ArrowLeft' && catPosition > 0) {
       setCatPosition((prev) => prev - 1);
     } else if (e.key === 'ArrowRight' && catPosition < 2) {
@@ -68,7 +103,7 @@ const Game = ({ initialLives = 3, iconType = 'cat' }) => {
   };
 
   const handleLaneClick = (lane) => {
-    if (!gameOver) {
+    if (!gameOver || winPopup) {
       setCatPosition(lane);
     }
   };
@@ -82,6 +117,7 @@ const Game = ({ initialLives = 3, iconType = 'cat' }) => {
     setShowPopup(false);
     setInvincible(false);
     setSpeed(1000);
+    setLastHitTime(0);
   };
 
   useEffect(() => {
@@ -95,6 +131,7 @@ const Game = ({ initialLives = 3, iconType = 'cat' }) => {
       <h2>Lives: {Array.from({ length: lives }, () => playerIcon).join(' ')}</h2>
       <GameBoard catPosition={catPosition} obstacles={obstacles} playerIcon={playerIcon} handleLaneClick={handleLaneClick} />
       {showPopup && <Popup score={score} onRestart={handleRestart} />}
+      {winPopup && <WinPopup />}
     </div>
   );
 };

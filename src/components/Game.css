@@ -1,18 +1,23 @@
 .game-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 852px;
-    width: 393px;
-    max-width: 100%;
-    margin: 0 auto;
-    background: white;
-    border: 2px solid black;
-    border-radius: 10px;
-    padding-top: 50px;
-    padding-bottom: 100px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 80vh;
+  width: 100vw;
+  max-width: 100%;
+  margin: 0 auto;
+  background: linear-gradient(145deg, #f3f3f3, #e6e6e6);
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), 
+              0 4px 8px rgba(0, 0, 0, 0.1);
+  padding-top: 50px;
+  padding-bottom: 150px;
+  overflow: hidden;
+  font-family: 'Arial', sans-serif;
+  position: relative;
+}
   
   .pawcoin-container {
     font-size: 2rem;
@@ -25,9 +30,26 @@
   }
 
   .fact-container {
-    font-size: 1.2rem;
-    padding: 20px;
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 1.8rem;
+    border-radius: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    z-index: 1000;
   }
+  
+  .fact-container.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
   
   p {
     font-size: 1.2rem;
@@ -38,7 +60,7 @@
     display: flex;
     justify-content: space-between;
     width: 340px;
-    height: 752px;
+    height: 70vh;
     border: 2px solid black;
     background-color: #ddd;
     position: relative;

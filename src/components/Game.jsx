@@ -22,7 +22,7 @@ const Game = () => {
   const [gameOver, setGameOver] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [shields, setShields] = useState(() => context.gameState.coverLevel === 'bronze' ? 3000 : context.gameState.coverLevel === 'silver' ? 6000 : context.gameState.coverLevel === 'gold' ? 12000 : 0);
-  const [playerIcon, setPlayerIcon] = useState(context.iconType === 'dog' ? '🐶' : '🐱');
+  const [playerIcon, setPlayerIcon] = useState(context.gameState.iconType === 'dog' ? '🐶' : '🐱');
   const [invincible, setInvincible] = useState(false);
   const [coinInvincible, setCoinInvincible] = useState(false);
   const [speed, setSpeed] = useState(1000);
@@ -36,7 +36,7 @@ const Game = () => {
 
   useEffect(() => {
     console.log(context)
-    setPlayerIcon(context.iconType === 'dog' ? '🐶' : '🐱');
+    setPlayerIcon(context.gameState.iconType === 'dog' ? '🐶' : '🐱');
   }, [context.iconType]);
 
 
@@ -180,10 +180,10 @@ const Game = () => {
           </>
         )}
       </span>
-
+      <div className="gameboard">
       <GameBoard catPosition={catPosition} obstacles={obstacles} playerIcon={playerIcon} handleLaneClick={handleLaneClick} infoCoins={infoCoins} isHurt={isHurt} />
-      {showFact && <div className="fact-container">{currentFact}</div>}
-      {!showFact && <div className="fact-container">{}</div>}
+      </div>
+      {showFact && <div className={`fact-container ${showFact ? 'show' : ''}`}>{currentFact}</div>}
       {showPopup && <Popup score={score} onRestart={handleRestart} />}
       {showWinPopup && <WinPopup />}
     </div>

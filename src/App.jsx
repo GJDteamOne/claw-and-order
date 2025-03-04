@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Game from './components/Game';
 import StartingPot from './StartingPot';
 import WidowsAppHome from './WidowsAppHome';
@@ -14,6 +14,7 @@ function App() {
     coverLevel: 'bronze',
     iconType: 'cat',
   };
+  
 
   const [gameState, setGameState] = useState(initialGameState);
 

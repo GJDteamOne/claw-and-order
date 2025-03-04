@@ -86,7 +86,7 @@ function WidowsAppHome() {
                     </Box>
                 </Box>
             </Box>
-            <Box display="flex" justifyContent="center">
+            <Box display="flex" justifyContent="center" sx={{ marginBottom: '300px' }}>
                 <Box
                     sx={{
                         width: '100%',

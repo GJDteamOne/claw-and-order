@@ -1,0 +1,10 @@
+.info-coin {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .info-coin-icon {
+    font-size: 2rem;
+  }
+  

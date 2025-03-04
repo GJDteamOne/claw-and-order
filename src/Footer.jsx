@@ -17,6 +17,7 @@ const FooterContainer = styled('footer')({
     borderTopRightRadius: '32px',
     borderBottomLeftRadius: '32px',
     borderBottomRightRadius: '32px',
+    zIndex: 9999
 });
 
 const MenuItem = styled(Box)({

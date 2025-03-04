@@ -1,5 +1,5 @@
 import React from 'react';
-import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
 import PersonIconOutlined from '@mui/icons-material/PersonOutlined';
@@ -11,35 +11,38 @@ const HeaderContainer = styled('header')({
     padding: '24px 0',
 });
 
-const MenuItem = styled(Typography)({
+const MenuItem = styled(Box)({
     textAlign: 'center',
     cursor: 'pointer',
     fontSize: '14px',
     fontWeight: 500,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
 });
 
 function Header() {
     return (
         <HeaderContainer>
-            <Grid container>
-                <Grid item xs={4}>
+            <Box display="flex" justifyContent="space-around">
+                <Box xs={4} display="flex" justifyContent="center" alignItems="center">
                     <MenuItem>
                         <PersonIconOutlined />
                     </MenuItem>
-                </Grid>
-                <Grid item xs={4}>
-                    <MenuItem style={{ backgroundColor: '#002' }}>
+                </Box>
+                <Box xs={4} display="flex" justifyContent="center" alignItems="center">
+                    <MenuItem style={{ backgroundColor: '#ede9ff', padding: '10px', borderRadius: '24px' }}>
                         <PlayCircleIcon />
-                        For you
+                        <Typography component="span" style={{ marginLeft: '8px' }}>for you</Typography>
                     </MenuItem>
-                </Grid>
-                <Grid item xs={4}>
+                </Box>
+                <Box xs={4} display="flex" justifyContent="center" alignItems="center">
                     <MenuItem>
                         <EmailIconOutlined />
                     </MenuItem>
-                </Grid>
-            </Grid>
-        </HeaderContainer >
+                </Box>
+            </Box>
+        </HeaderContainer>
     );
 }
 

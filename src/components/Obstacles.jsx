@@ -8,9 +8,9 @@ const Obstacles = ({ obstacles }) => {
   return (
     <>
       {obstacles.map((ob, index) => {
-        const Icon = obstacleIcons[ob.iconIndex] || GiBananaPeeled;
+        const Icon = obstacleIcons[ob.iconIndex];
         return (
-          <div key={index} className="obstacle" style={{ top: `${ob.y * 20}%`, transform: 'translateX(-50%)' }}>
+          <div key={index} className="obstacle" style={{ top: `${ob.y * 20}%` }}>
             <Icon className="obstacle-icon" />
           </div>
         );

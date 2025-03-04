@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
-import { GameContext } from './App';
+import { GameContext, INITIAL_POINTS } from './App';
 
 function StartingPot() {
   const { gameState, updateGameState } = useContext(GameContext);
@@ -13,8 +13,24 @@ function StartingPot() {
   const navigate = useNavigate();
 
   const handleClick = (selectedCover) => {
+    let pointsForCover = 0;
+    switch (selectedCover) {
+      case 'bronze':
+        pointsForCover = 1000;
+        break;
+      case 'silver':
+        pointsForCover = 2000;
+        break;
+      case 'gold':
+        pointsForCover = 3000;
+        break;
+      default:
+        pointsForCover = 0;
+        break;
+    }
     updateGameState({
       ...gameState,
+      initialPoints: INITIAL_POINTS - pointsForCover,
       coverLevel: selectedCover,
     });
     setSelectedCoverType(selectedCover);

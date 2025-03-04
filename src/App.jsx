@@ -6,10 +6,11 @@ import StartingPot from './StartingPot';
 import WidowsAppHome from './WidowsAppHome';
 
 export const GameContext = createContext({});
+export const INITIAL_POINTS = 10000;
 
 function App() {
   const initialGameState = {
-    initialPoints: 8000,
+    initialPoints: INITIAL_POINTS,
     coverLevel: 'bronze',
     iconType: 'dog',
   };

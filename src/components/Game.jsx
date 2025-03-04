@@ -180,10 +180,10 @@ const Game = () => {
           </>
         )}
       </span>
-
+      <div className="gameboard">
       <GameBoard catPosition={catPosition} obstacles={obstacles} playerIcon={playerIcon} handleLaneClick={handleLaneClick} infoCoins={infoCoins} isHurt={isHurt} />
-      {showFact && <div className="fact-container">{currentFact}</div>}
-      {!showFact && <div className="fact-container">{}</div>}
+      </div>
+      {showFact && <div className={`fact-container ${showFact ? 'show' : ''}`}>{currentFact}</div>}
       {showPopup && <Popup score={score} onRestart={handleRestart} />}
       {showWinPopup && <WinPopup />}
     </div>

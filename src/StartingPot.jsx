@@ -29,12 +29,17 @@ function StartingPot() {
         pointsForCover = 0;
         break;
     }
+
+    const coverLevel = (selectedCover === gameState.coverLevel) ? '' : selectedCover;
+    const newInitialPoints = coverLevel ? INITIAL_POINTS - pointsForCover : INITIAL_POINTS;
+  
     updateGameState({
       ...gameState,
-      initialPoints: INITIAL_POINTS - pointsForCover,
-      coverLevel: selectedCover,
+      initialPoints: newInitialPoints,
+      coverLevel,
     });
-    setSelectedCoverType(selectedCover);
+  
+    setSelectedCoverType(coverLevel);
   };
 
   return (

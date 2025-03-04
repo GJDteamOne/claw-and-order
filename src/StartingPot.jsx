@@ -2,12 +2,15 @@ import React, { useContext, useState } from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 import { GameContext } from './App';
 
 function StartingPot() {
   const { gameState, updateGameState } = useContext(GameContext);
   const [ selectedCoverType, setSelectedCoverType] = useState('');
+  const navigate = useNavigate();
 
   const handleClick = (selectedCover) => {
     updateGameState({
@@ -28,7 +31,11 @@ function StartingPot() {
         <Item>
           <h2>You can select one of the following covers</h2>
         </Item>
-        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent='center'>
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          spacing={2}
+          justifyContent='center'
+        >
           <BronzeBox
             onClick={() => handleClick('bronze')}
             isSelectedType={selectedCoverType === 'bronze'}
@@ -59,6 +66,17 @@ function StartingPot() {
         <WarningText>
           <h3>Or risk going without any pet insurance</h3>
         </WarningText>
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          spacing={2}
+          justifyContent='center'
+          sx={{ mb: 4 }} 
+        >
+          <Button
+            variant='contained'
+            onClick={() => navigate('/game')}
+          >Go To Game</Button>
+        </Stack>
       </Stack>
     </Box>
   );

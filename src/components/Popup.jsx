@@ -6,7 +6,6 @@ const Popup = ({ score, onRestart }) => {
     <div className="popup">
       <h2>Oh no! The cat got hurt!</h2>
       <p>This is why pet insurance is important — it helps cover unexpected vet bills and keeps your furry friend safe and sound.</p>
-      <p>Your final score: {score}</p>
       <button onClick={onRestart}>Restart</button>
       <button onClick={() => window.location.reload()}>Close</button>
     </div>

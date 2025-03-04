@@ -9,6 +9,7 @@ import ShieldIconOutlined from '@mui/icons-material/ShieldOutlined';
 
 const FooterContainer = styled('footer')({
     position: 'fixed',
+    backgroundColor: "#fff",
     bottom: 0,
     width: '100%',
     padding: '8px 0',
@@ -16,8 +17,7 @@ const FooterContainer = styled('footer')({
     borderTopLeftRadius: '32px',
     borderTopRightRadius: '32px',
     borderBottomLeftRadius: '32px',
-    borderBottomRightRadius: '32px',
-    zIndex: 9999
+    borderBottomRightRadius: '32px'
 });
 
 const MenuItem = styled(Box)({

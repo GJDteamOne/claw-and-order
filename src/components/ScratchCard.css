@@ -1,0 +1,42 @@
+.scratch-card {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  border-radius: 8px;
+
+}
+
+.result-message {
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+}
+
+.blurred {
+  filter: blur(8px);
+  user-select: none;
+  background-color: rgba(0, 0, 0, 0.1);
+
+  color: transparent;
+
+}
+
+.blurred::before {
+  content: 'Scratch to reveal';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #000;
+  font-size: 1.2rem;
+}
+
+.revealed {
+  filter: none;
+  background-color: transparent;
+  color: inherit;
+  /* Show the text color */
+}

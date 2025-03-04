@@ -180,7 +180,7 @@ function WidowsAppHome() {
                     }
                 }}
             >
-                <DialogTitle>Have a pet?</DialogTitle>
+                <DialogTitle>Are you a cat or dog lover?</DialogTitle>
                 <DialogContent>
                     <Typography>
                         Choose your favourite to play our new pet insurance game.

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Game from './components/Game';
 import StartingPot from './StartingPot';
+import CatOrDog from './CatOrDog';
 import WidowsAppHome from './WidowsAppHome';
 
 export const GameContext = createContext({});

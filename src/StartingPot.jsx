@@ -9,7 +9,7 @@ import { GameContext, INITIAL_POINTS } from './App';
 
 function StartingPot() {
   const { gameState, updateGameState } = useContext(GameContext);
-  const [ selectedCoverType, setSelectedCoverType] = useState('');
+  const [ selectedCoverType, setSelectedCoverType] = useState(gameState.coverLevel);
   const navigate = useNavigate();
 
   const handleClick = (selectedCover) => {

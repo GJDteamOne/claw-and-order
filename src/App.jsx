@@ -11,8 +11,8 @@ export const INITIAL_POINTS = 10000;
 function App() {
   const initialGameState = {
     initialPoints: INITIAL_POINTS,
-    coverLevel: 'bronze',
-    iconType: 'dog',
+    coverLevel: '',
+    iconType: '',
   };
 
   const [gameState, setGameState] = useState(initialGameState);

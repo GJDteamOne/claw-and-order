@@ -21,7 +21,7 @@ function WidowsAppHome() {
     const { gameState, updateGameState } = useContext(GameContext);
 
     useEffect(() => {
-        const timer = setTimeout(() => setOpen(true), 3000); // Open after 5 seconds
+        const timer = setTimeout(() => setOpen(true), 6000);
         return () => clearTimeout(timer); // Clean up if component unmounts
     }, []);
 

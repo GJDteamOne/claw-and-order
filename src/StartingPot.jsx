@@ -29,14 +29,15 @@ function StartingPot() {
 
   return (
     <Box sx={{ flexGrow: 1, px: { xs: 2, sm: 4, md: 6 } }}>
-      <Stack spacing={3} alignItems='center'>
-        <h1 sx={{ marginTop: '2rem', marginBottom: '5rem' }}>Select The Insurance Type</h1>
+      <Stack spacing={3} alignItems='center' sx={{ marginBlock: '2rem' }}>
+        <h1>Select The Insurance Type</h1>
       </Stack>
       <Stack 
         direction={{ xs: 'column', sm: 'row' }} 
-        spacing={2} 
-        justifyContent="center" 
-        alignItems="center"
+        spacing={3} 
+        justifyContent='center'
+        alignItems='center'
+        sx={{ marginBlock: '2rem' }}
       >
         <Card
           petType='cat'
@@ -128,6 +129,9 @@ const BronzeBox = styled(MedalBox)`
   &:hover {
     background-color: #b87333;
   }
+  & > div {
+    background-color: ${({ isSelectedType }) => (isSelectedType ? '#cd7f32' : 'white')};
+  }
 `;
 
 const SilverBox = styled(MedalBox)`
@@ -137,6 +141,9 @@ const SilverBox = styled(MedalBox)`
   &:hover {
     background-color: #a9a9a9;
   }
+  & > div {
+    background-color: ${({ isSelectedType }) => (isSelectedType ? '#c0c0c0' : 'white')};
+  }
 `;
 
 const GoldBox = styled(MedalBox)`
@@ -145,6 +152,9 @@ const GoldBox = styled(MedalBox)`
   border-color: #c5a200;
   &:hover {
     background-color: #e6c200;
+  }
+  & > div {
+    background-color: ${({ isSelectedType }) => (isSelectedType ? '#ffd700' : 'white')};
   }
 `;
 

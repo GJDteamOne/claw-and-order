@@ -3,15 +3,15 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Game from './components/Game';
 import StartingPot from './StartingPot';
-import CatOrDog from './CatOrDog';
 import WidowsAppHome from './WidowsAppHome';
 
 export const GameContext = createContext({});
 
 function App() {
   const initialGameState = {
-    pointsInPot: 8000,
-    cover: 0,
+    initialPoints: 8000,
+    coverLevel: '',
+    iconType: '',
   };
 
   const [gameState, setGameState] = useState(initialGameState);
@@ -24,9 +24,9 @@ function App() {
     <GameContext.Provider value={{gameState, updateGameState}}>
       <Router>
         <Routes>
-          <Route path='/' element={<CatOrDog />} />
+          <Route path='/' element={<WidowsAppHome />} />
           <Route path='/starting-pot' element={<StartingPot />} />
-          <Route path="/game" element={<Game initialLives={5} iconType="cat" />} />
+          <Route path='/game' element={<Game initialLives={5} iconType='cat' />} />
         </Routes>
       </Router>
     </GameContext.Provider>

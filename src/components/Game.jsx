@@ -10,6 +10,8 @@ import GoldShield from '../../public/goldShield64px.png'
 import './Game.css';
 import { GameContext } from '../App';
 
+const facts = ['Fact 1', 'Fact 2', 'Fact 3', 'Fact 4', 'Fact 5'];
+
 const Game = () => {
   const context = useContext(GameContext);
   const obstacleIcons = [GiDogHouse, GiFishbone, GiBalloonDog, GiTennisBall, GiBananaPeeled];
@@ -27,13 +29,16 @@ const Game = () => {
   const [showWinPopup, setShowWinPopup] = useState(false);
   const [infoCoins, setInfoCoins] = useState([]);
   const [isHurt, setIsHurt] = useState(false)
+  const [showFact, setShowFact] = useState(false);
+  const [currentFact, setCurrentFact] = useState(null);
+  const [lastCoinTime, setLastCoinTime] = useState(0);
   const shieldImage = context.gameState.coverLevel === 'bronze' ? BronzeShield : context.gameState.coverLevel === 'silver' ? SilverShield : context.gameState.coverLevel === 'gold' ? GoldShield : 0;
 
   useEffect(() => {
     console.log(context)
     setPlayerIcon(context.iconType === 'dog' ? '🐶' : '🐱');
   }, [context.iconType]);
-  
+
 
 
   useEffect(() => {
@@ -42,9 +47,9 @@ const Game = () => {
       setObstacles((obs) => {
         const isInfoCoin = Math.random() < 0.2;
         const lane = Math.floor(Math.random() * 3);
-        
-        const laneOccupied = obs.some((ob) => ob.lane === lane && ob.y === 0) || 
-        infoCoins.some((coin) => coin.lane === lane && coin.y === 0);
+
+        const laneOccupied = obs.some((ob) => ob.lane === lane && ob.y === 0) ||
+          infoCoins.some((coin) => coin.lane === lane && coin.y === 0);
 
         if (laneOccupied) {
           return obs;
@@ -52,7 +57,7 @@ const Game = () => {
         const newObstacle = isInfoCoin
           ? { lane: lane, y: 0, iconIndex: null, isInfoCoin: true }
           : { lane: lane, y: 0, iconIndex: Math.floor(Math.random() * obstacleIcons.length) };
-        
+
 
         if (isInfoCoin) {
           setInfoCoins((prevCoins) => [...prevCoins, newObstacle]);
@@ -63,14 +68,14 @@ const Game = () => {
             newObstacle,
           ]
         }
-        
+
       });
       setSpeed((prevSpeed) => Math.max(500, prevSpeed - 20));
     }, speed);
-  
+
     return () => clearInterval(interval);
   }, [gameOver, speed, showWinPopup]);
-  
+
   useEffect(() => {
     if (gameOver || showWinPopup) return;
     const interval = setInterval(() => {
@@ -80,11 +85,11 @@ const Game = () => {
           .filter((ob) => ob.y < 6)
       );
 
-      setInfoCoins((coins) => 
-        coins.map((coin) => ({ ...coin, y: coin.y + 1})).filter((coin) => coin.y < 6)
+      setInfoCoins((coins) =>
+        coins.map((coin) => ({ ...coin, y: coin.y + 1 })).filter((coin) => coin.y < 6)
       )
     }, Math.max(200, speed / 2));
-  
+
     return () => clearInterval(interval);
   }, [obstacles, gameOver, speed, showWinPopup]);
 
@@ -92,7 +97,7 @@ const Game = () => {
   useEffect(() => {
     if (!invincible && obstacles.some((ob) => ob.y === 5 && ob.lane === catPosition)) {
       setShields((prevLives) => Math.max(0, prevLives - 1000));
-      if(shields === 0) {
+      if (shields === 0) {
         setScore((prevScore) => {
           const newScore = Math.max(0, prevScore - 1000);
           if (newScore <= 0) {
@@ -103,16 +108,23 @@ const Game = () => {
         });
         setIsHurt(true);
         setTimeout(() => setIsHurt(false), 3000);
-     }
+      }
       setInvincible(true);
       setTimeout(() => setInvincible(false), 1000);
     }
   }, [obstacles, catPosition, shields, invincible]);
-  
+
   useEffect(() => {
     if (!gameOver && !coinInvincible && infoCoins.some((coin) => coin.y === 5 && coin.lane === catPosition)) {
       setScore((prevScore) => {
         const newScore = prevScore + 1000;
+        const now = Date.now();
+        if (now - lastCoinTime >= 5000) {
+          setShowFact(true);
+          setCurrentFact(facts[Math.floor(Math.random() * facts.length)]);
+          setLastCoinTime(now);
+          setTimeout(() => setShowFact(false), 6000);
+        }
         if (newScore >= 15000) {
           setShowWinPopup(true);
           setGameOver(true);
@@ -160,14 +172,18 @@ const Game = () => {
       <span className="pawcoin-container">
         <img src={PawCoin} alt="PawCoin" className="pawcoin" />
         {score}
+
+        {context.gameState.coverLevel !== 'none' && (
+          <>
+            <img src={shieldImage} alt="Shield" className="shield" />
+            {shields}
+          </>
+        )}
       </span>
-    {context.gameState.coverLevel !== 'none' && (
-      <span className="shields-container">
-      <img src={shieldImage} alt="Shield" className="shield" />
-      {shields}
-      </span>
-    )}
-      <GameBoard catPosition={catPosition} obstacles={obstacles} playerIcon={playerIcon} handleLaneClick={handleLaneClick} infoCoins={infoCoins} isHurt={isHurt}/>
+
+      <GameBoard catPosition={catPosition} obstacles={obstacles} playerIcon={playerIcon} handleLaneClick={handleLaneClick} infoCoins={infoCoins} isHurt={isHurt} />
+      {showFact && <div className="fact-container">{currentFact}</div>}
+      {!showFact && <div className="fact-container">{}</div>}
       {showPopup && <Popup score={score} onRestart={handleRestart} />}
       {showWinPopup && <WinPopup />}
     </div>

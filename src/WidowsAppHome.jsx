@@ -86,78 +86,81 @@ function WidowsAppHome() {
                     </Box>
                 </Box>
             </Box>
-            <Box
-                sx={{
-                    width: '100%',
-                    borderRadius: '5%',
-                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-                    marginTop: '20px',
-                    display: 'flex',
-                    flexDirection: 'column'
-                }}
-            >
-                <Box sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    margin: '24px 12px 12px 24px'
-                }}>
-                    <SsidChartIcon />
-                    <Typography fontWeight="bold">Projected pension pot</Typography>
-                    <ArrowForwardIosIcon />
-                </Box>
-                <Box sx={{ display: "flex", flexDirection: "row", alignItems: 'center' }}>
-                    <Typography fontWeight="bold" fontSize="25px" sx={{ marginLeft: "24px" }}>£85,100</Typography>
-                    <Typography color='grey' marginLeft="12px">from age 67</Typography>
-                </Box>
+            <Box display="flex" justifyContent="center">
                 <Box
                     sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
                         width: '100%',
-                        margin: '20px 0 20px 0'
+                        maxWidth: '300px',
+                        borderRadius: '5%',
+                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                        marginTop: '20px',
+                        display: 'flex',
+                        flexDirection: 'column'
                     }}
                 >
+                    <Box sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        margin: '24px 12px 12px 24px'
+                    }}>
+                        <SsidChartIcon />
+                        <Typography fontWeight="bold">Projected pension pot</Typography>
+                        <ArrowForwardIosIcon />
+                    </Box>
+                    <Box sx={{ display: "flex", flexDirection: "row", alignItems: 'center' }}>
+                        <Typography fontWeight="bold" fontSize="25px" sx={{ marginLeft: "24px" }}>£85,100</Typography>
+                        <Typography color='grey' marginLeft="12px">from age 67</Typography>
+                    </Box>
                     <Box
                         sx={{
-                            width: 'calc(100% - 42px)',
-                            height: '1px',
-                            backgroundColor: 'lightgrey'
-                        }}
-                    />
-                </Box>
-                <Typography color='grey' margin="0 24px 0 24px">Heading towards a basic living standard</Typography>
-                <Box
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        width: '100%',
-                    }}
-                >
-                    <Box
-                        sx={{
-                            width: 'calc(100% - 42px)'
+                            display: 'flex',
+                            justifyContent: 'center',
+                            width: '100%',
+                            margin: '20px 0 20px 0'
                         }}
                     >
-                        <Slider
-                            disabled
-                            defaultValue={30}
-                            aria-label="Disabled slider"
+                        <Box
                             sx={{
-                                color: '#133540',  // This changes the track and thumb color
-                                '& .MuiSlider-thumb': {
-                                    width: 16,
-                                    height: 16,
-                                    backgroundColor: '#133540',
-                                    border: '2px solid #133540',  // Custom border for the thumb
-                                },
-                                '& .MuiSlider-rail': {
-                                    backgroundColor: '#ede9ff'  // This changes the background (unfilled part of the track)
-                                },
-                                '& .MuiSlider-track': {
-                                    backgroundColor: '#af5eff'  // This changes the filled part of the track
-                                }
+                                width: 'calc(100% - 42px)',
+                                height: '1px',
+                                backgroundColor: 'lightgrey'
                             }}
                         />
+                    </Box>
+                    <Typography color='grey' margin="0 24px 0 24px">Heading towards a basic living standard</Typography>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            width: '100%',
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                width: 'calc(100% - 42px)'
+                            }}
+                        >
+                            <Slider
+                                disabled
+                                defaultValue={30}
+                                aria-label="Disabled slider"
+                                sx={{
+                                    color: '#133540',  // This changes the track and thumb color
+                                    '& .MuiSlider-thumb': {
+                                        width: 16,
+                                        height: 16,
+                                        backgroundColor: '#133540',
+                                        border: '2px solid #133540',  // Custom border for the thumb
+                                    },
+                                    '& .MuiSlider-rail': {
+                                        backgroundColor: '#ede9ff'  // This changes the background (unfilled part of the track)
+                                    },
+                                    '& .MuiSlider-track': {
+                                        backgroundColor: '#af5eff'  // This changes the filled part of the track
+                                    }
+                                }}
+                            />
+                        </Box>
                     </Box>
                 </Box>
             </Box>

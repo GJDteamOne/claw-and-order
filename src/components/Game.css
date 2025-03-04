@@ -18,10 +18,16 @@
   font-family: 'Arial', sans-serif;
   position: relative;
 }
+
+.game-name {
+  position: absolute;
+  top: 1px;
+}
   
   .pawcoin-container {
-    font-size: 2rem;
+    font-size: 1.6rem;
     margin-bottom: 10px;
+    transform: translateY(-20px)
   }
 
   .shields-container {
@@ -64,6 +70,7 @@
     justify-content: space-between;
     width: 340px;
     height: 70vh;
+    transform: translateY(-20px);
     border: 2px solid black;
     background-color: #ddd;
     position: relative;
